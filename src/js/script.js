@@ -63,9 +63,10 @@
       thisProduct.getElements();
       thisProduct.initAccordion();
       thisProduct.initOrderForm();
+      thisProduct.initAmountWidget();
       thisProduct.processOrder();
 
-      console.log('new Product: ', thisProduct);
+      //console.log('new Product: ', thisProduct);
     }
 
     renderInMenu(){
@@ -88,22 +89,25 @@
       const thisProduct = this;
 
       thisProduct.accordionTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
-      console.log('thisProduct.accordionTrigger: ', thisProduct.accordionTrigger);
+      //console.log('thisProduct.accordionTrigger: ', thisProduct.accordionTrigger);
 
       thisProduct.form = thisProduct.element.querySelector(select.menuProduct.form);
-      console.log('thisProduct.form: ', thisProduct.form);
+      //console.log('thisProduct.form: ', thisProduct.form);
 
       thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
-      console.log('thisProduct.formInputs: ', thisProduct.formInputs);
+      //console.log('thisProduct.formInputs: ', thisProduct.formInputs);
 
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
-      console.log('thisProduct.cartButton: ', thisProduct.cartButton);
+      //console.log('thisProduct.cartButton: ', thisProduct.cartButton);
 
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
-      console.log('thisProduct.priceElem: ', thisProduct.priceElem);
+      //console.log('thisProduct.priceElem: ', thisProduct.priceElem);
 
       thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
-      console.log('thisProduct.imageWrapper: ', thisProduct.imageWrapper);
+      //console.log('thisProduct.imageWrapper: ', thisProduct.imageWrapper);
+
+      thisProduct.amountWidgetElem = thisProduct.element.querySelector(select.menuProduct.amountWidget);
+      console.log('thisProduct.amountWidgetElem: ', thisProduct.amountWidgetElem);
     }
 
     initAccordion(){
@@ -121,7 +125,7 @@
 
         /* find active product (product that has active class) */
         const activeProduct = document.querySelector(select.all.menuProductsActive);
-        console.log('activeProduct: ', activeProduct);
+        //console.log('activeProduct: ', activeProduct);
 
         /* if there is active product and it't not thisProduct.element, remove class active from it */
         if (activeProduct != null && activeProduct != thisProduct.element){
@@ -152,9 +156,8 @@
         thisProduct.processOrder();
       });
 
-      console.log('initOrderForm: ', thisProduct);
+      //console.log('initOrderForm: ', thisProduct);
     }
-
 
     processOrder(){
 
@@ -162,7 +165,7 @@
 
       // convert form to object structure e.g. { sauce: ['tomato'], toppings: ['olives', 'redPeppers']}
       const formData = utils.serializeFormToObject(thisProduct.form);
-      console.log('formData', formData);
+      //console.log('formData', formData);
 
       // set price to default price
       let price = thisProduct.data.price;
@@ -172,14 +175,14 @@
 
         // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
         const param = thisProduct.data.params[paramId];
-        console.log('param: ', paramId, param);
+        //console.log('param: ', paramId, param);
 
         // for every option in this category
         for(let optionId in param.options){
 
           // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
           const option = param.options[optionId];
-          console.log('option: ', optionId, option);
+          //console.log('option: ', optionId, option);
 
           // check if there is param with a name of paramId in formData and if it includes optionId = check if box was selected ??
           const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
@@ -201,7 +204,7 @@
 
           // find image with class of '.paramId-optionId'
           const optionImage = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId);
-          console.log('optionImage: ', optionImage);
+          //console.log('optionImage: ', optionImage);
 
           // check if the image was found (if optionImage is not null)
           if(optionImage){
@@ -222,12 +225,43 @@
 
     }
 
+    initAmountWidget(){
+      const thisProduct = this;
+
+      thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
+    }
   }
+
+
+
+
+  class AmountWidget{
+    constructor(element){
+      const thisWidget = this;
+
+      console.log('AmountWidget: ', thisWidget);
+      console.log('constructor arguments: ', element);
+
+      thisWidget.getElements(element);
+    }
+
+    getElements(element){
+      const thisWidget = this;
+
+      thisWidget.element = element;
+      thisWidget.input = thisWidget.element.querySelector(select.widgets.amount.input);
+      thisWidget.linkDecrease = thisWidget.element.querySelector(select.widgets.amount.linkDecrease);
+      thisWidget.linkIncrease = thisWidget.element.querySelector(select.widgets.amount.linkIncrease);
+
+    }
+  }
+
+
 
   const app = {
     initMenu: function(){
       const thisApp = this;
-      console.log('thisApp.data: ', thisApp.data);
+      //console.log('thisApp.data: ', thisApp.data);
 
       for(let productData in thisApp.data.products){
         new Product(productData, thisApp.data.products[productData]);
@@ -242,11 +276,11 @@
 
     init: function(){
       const thisApp = this;
-      console.log('*** App starting ***');
-      console.log('thisApp:', thisApp);
-      console.log('classNames:', classNames);
-      console.log('settings:', settings);
-      console.log('templates:', templates);
+      //console.log('*** App starting ***');
+      //console.log('thisApp:', thisApp);
+      //console.log('classNames:', classNames);
+      //console.log('settings:', settings);
+      //console.log('templates:', templates);
 
       thisApp.initData();
       thisApp.initMenu();
