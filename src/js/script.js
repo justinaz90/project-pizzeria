@@ -243,6 +243,8 @@
       console.log('constructor arguments: ', element);
 
       thisWidget.getElements(element);
+      thisWidget.setValue(thisWidget.input.value);
+      thisWidget.initActions();
     }
 
     getElements(element){
@@ -252,7 +254,42 @@
       thisWidget.input = thisWidget.element.querySelector(select.widgets.amount.input);
       thisWidget.linkDecrease = thisWidget.element.querySelector(select.widgets.amount.linkDecrease);
       thisWidget.linkIncrease = thisWidget.element.querySelector(select.widgets.amount.linkIncrease);
+    }
 
+    setValue(value){
+      const thisWidget = this;
+
+      const newValue = parseInt(value);
+      console.log('newValue: ', newValue);
+
+      /* TODO: Add validation */
+
+      if(thisWidget.value !== newValue  && !isNaN(newValue)) { // thisWidget.value will change only if the newValue typed in input is different than the current one && newValue is not null (not NAN (not Not a Number))
+        thisWidget.value = newValue;
+      }
+
+      thisWidget.input.value = thisWidget.value;
+    }
+
+    initActions(){
+
+      const thisWidget = this;
+
+      thisWidget.input.addEventListener('change', function(){
+        thisWidget.setValue(thisWidget.input.value);
+      });
+
+
+      thisWidget.linkDecrease.addEventListener('click', function(event){
+        event.preventDefault();
+        thisWidget.setValue(thisWidget.value -1);
+      });
+
+
+      thisWidget.linkIncrease.addEventListener('click', function(event){
+        event.preventDefault();
+        thisWidget.setValue(thisWidget.value +1);
+      });
     }
   }
 
@@ -279,7 +316,7 @@
       //console.log('*** App starting ***');
       //console.log('thisApp:', thisApp);
       //console.log('classNames:', classNames);
-      //console.log('settings:', settings);
+      console.log('settings:', settings);
       //console.log('templates:', templates);
 
       thisApp.initData();
