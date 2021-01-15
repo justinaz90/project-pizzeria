@@ -276,6 +276,7 @@
       console.log('constructor arguments: ', element);
 
       thisWidget.getElements(element);
+      thisWidget.value = settings.amountWidget.defaultValue;
       thisWidget.setValue(thisWidget.input.value);
       thisWidget.initActions();
     }
@@ -291,7 +292,6 @@
 
     setValue(value){
       const thisWidget = this;
-      thisWidget.value = settings.amountWidget.defaultValue;
 
       const newValue = parseInt(value);
       console.log('newValue: ', newValue);
