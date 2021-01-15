@@ -265,6 +265,7 @@
 
     setValue(value){
       const thisWidget = this;
+      thisWidget.value = settings.amountWidget.defaultValue;
 
       const newValue = parseInt(value);
       console.log('newValue: ', newValue);
