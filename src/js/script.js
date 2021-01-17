@@ -133,7 +133,7 @@
       //console.log('thisProduct.imageWrapper: ', thisProduct.imageWrapper);
 
       thisProduct.amountWidgetElem = thisProduct.element.querySelector(select.menuProduct.amountWidget);
-      console.log('thisProduct.amountWidgetElem: ', thisProduct.amountWidgetElem);
+      //console.log('thisProduct.amountWidgetElem: ', thisProduct.amountWidgetElem);
     }
 
     initAccordion(){
@@ -282,7 +282,7 @@
         amount: thisProduct.amountWidget.value,
         priceSingle: thisProduct.priceSingle,
         price: thisProduct.priceSingle * thisProduct.amountWidget.value,
-        params: thisProduct.prepareCartProductParams(),
+        params: thisProduct.prepareCartProductParams()
       };
 
       return productSummary;
@@ -300,7 +300,7 @@
 
         // create category param in params const eg. params = { ingredients: { name: 'Ingredients', options: {}}}
         params[paramId] = {
-          name: param.label,
+          label: param.label,
           options: {}
         };
 
@@ -327,8 +327,8 @@
     constructor(element){
       const thisWidget = this;
 
-      console.log('AmountWidget: ', thisWidget);
-      console.log('constructor arguments: ', element);
+      //console.log('AmountWidget: ', thisWidget);
+      //console.log('constructor arguments: ', element);
 
       thisWidget.getElements(element);
       thisWidget.value = settings.amountWidget.defaultValue;
@@ -349,7 +349,7 @@
       const thisWidget = this;
 
       const newValue = parseInt(value);
-      console.log('newValue: ', newValue);
+      //console.log('newValue: ', newValue);
 
       if(thisWidget.value !== newValue  && !isNaN(newValue) && newValue >= settings.amountWidget.defaultMin && newValue <= settings.amountWidget.defaultMax) { // thisWidget.value will change only if the newValue typed in input is different than the current one && newValue is not null (not NAN (not Not a Number))
         thisWidget.value = newValue;
@@ -398,7 +398,7 @@
       thisCart.getElements(element);
       thisCart.initActions();
 
-      console.log('new Cart', thisCart);
+      //console.log('new Cart', thisCart);
     }
 
     getElements(element){
@@ -409,8 +409,9 @@
       thisCart.dom.wrapper = element;
 
       thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
-      console.log('thisCart.dom.toggleTrigger: ', thisCart.dom.toggleTrigger);
+      //console.log('thisCart.dom.toggleTrigger: ', thisCart.dom.toggleTrigger);
 
+      thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList);
     }
 
     initActions(){
@@ -422,7 +423,16 @@
     }
 
     add(menuProduct){
-      // const thisCart = this;
+      const thisCart = this;
+
+      /* generate HTML based on template */
+      const generatedHTML = templates.cartProduct(menuProduct);
+
+      /* create element using utils.createElementFromHTML */
+      const generatedDOM = utils.createDOMFromHTML(generatedHTML);
+
+      /* add element to thisCart.dom.productList */
+      thisCart.dom.productList.appendChild(generatedDOM);
 
       console.log('adding product', menuProduct);
     }
