@@ -55,6 +55,8 @@ class CartProduct{
       thisCartProduct.price = thisCartProduct.amount * thisCartProduct.priceSingle;
 
       thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
+
+      console.log('thisCartProduct.amount', thisCartProduct.amountWidget);
     });
   }
 
@@ -81,11 +83,9 @@ class CartProduct{
       priceSingle: thisCartProduct.priceSingle,
       name: thisCartProduct.name,
       params: thisCartProduct.params,
-
     };
     return orderData;
   }
-
 }
 
 export default CartProduct;
