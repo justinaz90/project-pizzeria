@@ -146,7 +146,7 @@ class Cart{
       payload.products.push(prod.getData());
     }
 
-    console.log('payload: ', payload);
+    console.log('payload cart: ', payload);
 
     const options = {
       method: 'POST',
