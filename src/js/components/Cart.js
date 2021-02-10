@@ -100,6 +100,7 @@ class Cart{
 
     /* create element using utils.createElementFromHTML */
     const generatedDOM = utils.createDOMFromHTML(generatedHTML);
+    console.log(generatedHTML);
 
     /* add element to thisCart.dom.productList */
     thisCart.dom.productList.appendChild(generatedDOM);

@@ -196,6 +196,7 @@ class Product{
     thisProduct.name = thisProduct.data.name;
     thisProduct.amount = thisProduct.amountWidget.value;
     thisProduct.price = thisProduct.priceSingle * thisProduct.amountWidget.value;
+    console.log(thisProduct);
 
     // app.cart.add(thisProduct.prepareCartProduct());
 
