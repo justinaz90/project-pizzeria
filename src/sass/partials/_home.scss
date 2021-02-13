@@ -1,0 +1,127 @@
+$color-black: #000;
+$color-light-grey: #a0a0a0;
+$color-dark-grey: #505050;
+
+.home-wrapper {
+  margin: ($base-size * 3.5) auto;
+  padding: ($base-size * 6) ($base-size * 4);
+  background: $color-light;
+  border-bottom: 1px solid lighten($color-dark, 70%);
+  border-radius: $radius;
+}
+
+
+/* Main */
+.main-options {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  color: $color-light;
+  font-family: $font-header;
+
+
+  h2 {
+    font-size: 25px;
+    font-weight: $font-bold;
+  }
+
+  h3 {
+    font-size: 13px;
+    font-weight: $font-light;
+    font-family: $font-text;
+    margin: 0px auto;
+  }
+
+  .order-online, .book-a-table {
+    flex: 45%;
+    margin: 5px;
+    background-size: cover;
+    background-position: center center;
+    height: 120px;
+    width: 300px;
+
+
+    h2 {
+      position: relative;
+      top: 20px;
+    }
+
+    p {
+      position: relative;
+      font-family: $font-text;
+      top: 20px;
+      visibility: hidden;
+    }
+  }
+
+  .order-online {
+    background-image: url("../images/homepage/pizza-1.jpg");
+
+  }
+
+  .book-a-table {
+    background-image: url("../images/homepage/pizza-2.jpg");
+  }
+
+  .order-online:hover, .book-a-table:hover {
+    h2 {
+      top: 0px;
+      transition: linear .35s;
+    }
+
+    p {
+      top: 0px;
+      transition: linear .35s;
+      visibility: visible;
+    }
+  }
+
+  .opening-hours {
+    background: $color-main;
+    flex: 100%;
+    margin: 5px;
+    height: 120px;
+    width: 600px;
+
+    h2 {
+      margin-bottom: 0px;
+      padding-bottom: 0px;
+    }
+  }
+}
+
+/* Carousel */
+
+
+/* Gallery */
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  img {
+    height: 195px;
+    width: 195px;
+    object-fit: cover;
+  }
+
+  ul {
+    li {
+      display: inline;
+      font-size: 0;
+
+      i {
+        font-size: 20px;
+
+      }
+      .fa-heart {
+        color: $color-danger;
+      }
+
+      .fa-share-alt {
+        color: $color-light;
+      }
+    }
+  }
+}
