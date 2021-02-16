@@ -10,7 +10,6 @@ $color-dark-grey: #505050;
   border-radius: $radius;
 }
 
-
 /* Main */
 .main-options {
   display: flex;
@@ -18,7 +17,6 @@ $color-dark-grey: #505050;
   text-align: center;
   color: $color-light;
   font-family: $font-header;
-
 
   h2 {
     font-size: 25px;
@@ -39,7 +37,8 @@ $color-dark-grey: #505050;
     background-position: center center;
     height: 120px;
     width: 300px;
-
+    border-radius: $radius;
+    cursor: pointer;
 
     h2 {
       position: relative;
@@ -56,7 +55,6 @@ $color-dark-grey: #505050;
 
   .order-online {
     background-image: url("../images/homepage/pizza-1.jpg");
-
   }
 
   .book-a-table {
@@ -82,6 +80,7 @@ $color-dark-grey: #505050;
     margin: 5px;
     height: 120px;
     width: 600px;
+    border-radius: $radius;
 
     h2 {
       margin-bottom: 0px;
@@ -92,6 +91,35 @@ $color-dark-grey: #505050;
 
 /* Carousel */
 
+.main-carousel {
+  height: 200px;
+  margin-top: 100px;
+
+  .carousel-cell {
+    width: 100%;
+    height: 190px;
+    display: flex;
+
+    img {
+      object-fit: cover;
+      width: 190px;
+      height: 190px;
+      margin-right: 40px;
+      border-radius: $radius;
+    }
+
+    h4 {
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 15px;
+    }
+
+    p:nth-child(3) {
+      font-style: italic;
+    }
+  }
+
+}
 
 /* Gallery */
 
@@ -99,29 +127,66 @@ $color-dark-grey: #505050;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin-top: 100px;
 
-  img {
-    height: 195px;
-    width: 195px;
-    object-fit: cover;
+  .gallery-box {
+    position: relative;
+
+    img {
+      height: 195px;
+      width: 195px;
+      object-fit: cover;
+      border-radius: $radius;
+    }
   }
 
-  ul {
-    li {
-      display: inline;
-      font-size: 0;
-
-      i {
-        font-size: 20px;
-
-      }
-      .fa-heart {
-        color: $color-danger;
-      }
-
-      .fa-share-alt {
-        color: $color-light;
-      }
+  .gallery-box:hover {
+    img {
+      filter: brightness(50%);
+      opacity: 0.9;
+      transition: all 0.5s;
     }
+
+    .overlay {
+      visibility: visible;
+    }
+  }
+}
+
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0;
+  margin: 0 auto;
+  visibility: hidden;
+
+  li {
+    display: inline;
+    font-size: 0;
+
+    i {
+      font-size: 20px;
+      padding-left: 10px;
+    }
+
+    .fa-heart, .fa-share-alt {
+      color: $color-light;
+    }
+
+    .fa-heart:hover, .fa-share-alt:hover {
+      color: $color-main;
+    }
+  }
+}
+
+/* Instagram */
+
+.instagram {
+  margin-top: 30px;
+
+  a {
+    color: $color-main;
   }
 }

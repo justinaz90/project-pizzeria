@@ -42,6 +42,7 @@ export const select = {
       input: 'input[type="range"]',
       output: '.output',
     },
+    carousel: '.main-carousel',
   },
   cart: {
     productList: '.cart__order-summary',
@@ -59,6 +60,7 @@ export const select = {
     orderButton: '.order-online',
     bookButton: '.book-a-table',
     openingHours: '.opening-hours',
+    mainOptions: '.main-options a',
   },
   cartProduct: {
     amountWidget: '.widget-amount',
