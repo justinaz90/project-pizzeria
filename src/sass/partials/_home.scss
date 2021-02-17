@@ -18,6 +18,11 @@ $color-dark-grey: #505050;
   color: $color-light;
   font-family: $font-header;
 
+  a {
+    color: $color-light;
+    text-decoration: none;
+  }
+
   h2 {
     font-size: 25px;
     font-weight: $font-bold;
