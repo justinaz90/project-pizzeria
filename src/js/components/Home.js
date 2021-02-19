@@ -8,7 +8,7 @@ class Home{
 
     thisHome.render(wrapper);
     thisHome.initWidgets();
-    thisHome.initActions();
+    app.initLinks(thisHome.mainOptions);
   }
 
   render(wrapper){
@@ -39,20 +39,6 @@ class Home{
     });
   }
 
-  initActions(){
-    const thisHome = this;
-
-    for(let option of thisHome.mainOptions){
-      option.addEventListener('click', function(event){
-        const clickedElement = this;
-        event.preventDefault();
-
-        const id = clickedElement.getAttribute('href').replace('#', '');
-        app.activatePage(id);
-        window.location.hash = '#/' + id;
-      });
-    }
-  }
 }
 
 export default Home;
